@@ -50,11 +50,11 @@ Small commits. One idea per commit.
 3. Keep PRs small: one ticket, ideally under 400 changed lines.
 4. CI must be green: lint, typecheck, unit tests, e2e, build (and evals for AI code).
 5. Check the Vercel preview link yourself before asking for review.
-6. Move the ticket to **In Review** and request a reviewer.
+6. Move the ticket to **In review** and request a reviewer.
 7. Answer every review comment (fix it or explain). Do not resolve someone else's comment for them.
 8. Squash and merge. Delete the branch.
 
-Board columns: **Todo → In Progress → In Review → Done**.
+The board is the [🗂 Board](https://khaled-quest.vercel.app/#board) on your dashboard (agents use `node scripts/board.mjs`, see [docs/board-api.md](docs/board-api.md)). Columns: **To do → In progress → Blocked → In review → Done**. Only the mentor moves a ticket to Done.
 
 ## 4. Daily stand-up
 

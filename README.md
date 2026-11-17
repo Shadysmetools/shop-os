@@ -78,12 +78,12 @@ pnpm e2e                     # Playwright
 
 ## How to work
 
-1. Pick the top ticket in **Todo** on the project board and move it to **In Progress**.
+1. Pick the top ticket in **To do** on the [🗂 Board](https://khaled-quest.vercel.app/#board) on your dashboard and move it to **In progress**.
 2. Create a branch for that ticket only: `feat/<issue>-short-slug` (for example `feat/12-product-list`).
 3. Write the code and the tests. Commit small, with conventional commit messages.
 4. Open a pull request. Put `Closes #<issue>` in the description so the ticket closes on merge.
 5. Wait for CI to be green (lint, typecheck, unit tests, e2e, build) and check the Vercel preview link.
-6. Move the ticket to **In Review** and ask for a review. Fix the comments.
-7. After merge, the ticket moves to **Done**.
+6. Move the ticket to **In review** and ask for a review. Fix the comments.
+7. After merge, the mentor moves the ticket to **Done**.
 
-Board columns: **Todo → In Progress → In Review → Done**. Details in [CONTRIBUTING.md](CONTRIBUTING.md).
+Board columns: **To do → In progress → Blocked → In review → Done**. Details in [CONTRIBUTING.md](CONTRIBUTING.md); the board API for agents is in [docs/board-api.md](docs/board-api.md).

@@ -12,7 +12,7 @@ Do these in SO-M0. Tick each box only when its "done when" is true. Use your own
 ### Accounts
 
 - [ ] **GitHub** ([github.com/signup](https://github.com/signup))
-  Done when: you can push a branch to the `shop-os` repo, open a PR, and see the project board with columns Todo, In Progress, In Review, Done. 2FA is on.
+  Done when: you can push a branch to the `shop-os` repo, and open a PR. 2FA is on. (The ticket board lives on your dashboard: To do, In progress, Blocked, In review, Done.)
 - [ ] **Vercel** ([vercel.com/signup](https://vercel.com/signup), sign in with GitHub)
   Done when: the `shop-os` repo is imported, a PR gets a preview link as a comment, and `main` deploys to production.
 - [ ] **Supabase** ([supabase.com/dashboard](https://supabase.com/dashboard))
