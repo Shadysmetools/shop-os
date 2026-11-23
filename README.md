@@ -63,18 +63,18 @@ Yearly plans get 2 months free.
 
 ## How to run
 
-> Placeholder. This section is filled in during SO-M0 (ticket FND-2).
-
-It will look roughly like this:
+You need Node.js LTS and pnpm (`npm install -g pnpm`).
 
 ```bash
-pnpm install
-cp .env.example .env.local   # fill in Supabase keys
-supabase start               # local Postgres in Docker
-pnpm dev                     # http://localhost:3000
-pnpm test                    # Vitest
-pnpm e2e                     # Playwright
+pnpm install       # install dependencies
+pnpm dev           # open http://localhost:3000
+pnpm lint          # ESLint
+pnpm typecheck     # TypeScript check
+pnpm test          # Vitest unit tests
+pnpm build         # production build
 ```
+
+Coming next in SO-M0: the local Supabase database (T-FND-3, needs Docker) and Playwright e2e tests (T-FND-5).
 
 ## How to work
 
