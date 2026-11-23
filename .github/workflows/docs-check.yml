@@ -20,4 +20,7 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version-file: .nvmrc
+          # This job installs no packages, so skip v5's automatic pnpm cache
+          # (it would look for pnpm, which isn't installed here).
+          package-manager-cache: false
       - run: node scripts/check-docs.mjs
