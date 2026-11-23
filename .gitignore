@@ -25,3 +25,10 @@ supabase/.branches/
 *.log
 .DS_Store
 Thumbs.db
+
+# Next.js and TypeScript generated files
+build/
+next-env.d.ts
+*.tsbuildinfo
+*.pem
+.pnp.*
