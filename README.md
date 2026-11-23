@@ -63,18 +63,37 @@ Yearly plans get 2 months free.
 
 ## How to run
 
-You need Node.js LTS and pnpm (`npm install -g pnpm`).
+You need Node.js LTS, pnpm (`npm install -g pnpm`) and [Docker Desktop](https://www.docker.com/products/docker-desktop/) running. The Supabase CLI comes with `pnpm install`.
 
 ```bash
-pnpm install       # install dependencies
-pnpm dev           # open http://localhost:3000
+pnpm install                 # install dependencies (includes the Supabase CLI)
+pnpm db:start                # start the local database in Docker (first run downloads images, ~5 min)
+cp .env.example .env.local   # then paste API_URL, PUBLISHABLE_KEY and SECRET_KEY from db:start
+pnpm dev                     # open http://localhost:3000
+```
+
+Local database:
+
+| Command | What it does |
+|---|---|
+| `pnpm db:start` / `pnpm db:stop` | Start / stop the local Supabase containers |
+| `pnpm db:status` | Show the local URLs and keys again |
+| `pnpm db:reset` | Delete the local database and rebuild it from every migration, then load `supabase/seed.sql` |
+| `pnpm exec supabase migration new <name>` | Create a new migration file in `supabase/migrations/` |
+
+Supabase Studio (a web view of the local database) is at http://127.0.0.1:54323.
+
+Checks:
+
+```bash
 pnpm lint          # ESLint
 pnpm typecheck     # TypeScript check
 pnpm test          # Vitest unit tests
+pnpm test:db       # database tests (needs pnpm db:start)
 pnpm build         # production build
 ```
 
-Coming next in SO-M0: the local Supabase database (T-FND-3, needs Docker) and Playwright e2e tests (T-FND-5).
+Coming next in SO-M0: Playwright e2e tests (T-FND-5).
 
 ## How to work
 

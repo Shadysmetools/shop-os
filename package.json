@@ -10,9 +10,14 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:db": "vitest run --mode db",
     "test:e2e": "echo \"Playwright e2e tests are added in T-FND-5\" && exit 1",
     "format": "prettier --write src",
-    "format:check": "prettier --check src"
+    "format:check": "prettier --check src",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:status": "supabase status"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
@@ -33,6 +38,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "prettier": "^3.10.1",
+    "supabase": "^3.2.0",
     "tailwindcss": "4.3.3",
     "typescript": "^5",
     "vitest": "^5.1.1"

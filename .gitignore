@@ -32,3 +32,7 @@ next-env.d.ts
 *.tsbuildinfo
 *.pem
 .pnp.*
+
+# Personal Claude Code settings (never shared)
+.claude/settings.local.json
+CLAUDE.local.md
