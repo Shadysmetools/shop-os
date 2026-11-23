@@ -1,0 +1,7 @@
+# Use LF line endings in every checkout, on every OS, so Prettier and CI agree.
+* text=auto eol=lf
+
+# Binary files: never touch their bytes.
+*.ico binary
+*.png binary
+*.jpg binary
