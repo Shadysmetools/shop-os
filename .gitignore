@@ -1,0 +1,27 @@
+# Secrets: every .env file stays on your laptop, except the example with names only
+.env*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Vercel
+.vercel/
+
+# Test output
+coverage/
+playwright-report/
+test-results/
+
+# Supabase local files
+supabase/.temp/
+supabase/.branches/
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
