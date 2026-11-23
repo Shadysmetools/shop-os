@@ -1,5 +1,7 @@
 # Shop OS
 
+[![CI](https://github.com/Shadysmetools/shop-os/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shadysmetools/shop-os/actions/workflows/ci.yml)
+
 **نظام محلك في مكان واحد** (Your shop's system, in one place)
 
 Shop OS is a multi-tenant SaaS for small shops, distributors and wholesalers in Egypt and MENA with 1 to 20 staff. It replaces paper, Excel and WhatsApp with one simple system for:

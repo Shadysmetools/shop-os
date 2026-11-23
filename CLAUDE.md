@@ -71,6 +71,7 @@ scripts/board.mjs     Ticket board CLI
 - One ticket = one branch = one PR. Branch names: `feat/<issue>-slug`, `fix/<issue>-slug`, `docs/<issue>-slug`, `chore/<issue>-slug`.
 - Conventional commits: `feat(sales): reserve stock on order confirm`.
 - PRs stay small (under about 400 lines), say `Closes #<issue>`, and need green CI.
+- CI (`.github/workflows/ci.yml`) runs `pnpm lint`, `format:check`, `typecheck`, `test` and `build` on Node from `.nvmrc`. Run them locally before pushing.
 - Write tests first for business rules. Never commit to `main`.
 - Khaled must be able to explain every line. Explain what you write; do not hide changes.
 - Only the mentor moves a ticket to Done. Details in `CONTRIBUTING.md`.
