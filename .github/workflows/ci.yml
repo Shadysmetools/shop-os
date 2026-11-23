@@ -7,10 +7,11 @@ on:
   push:
     branches: [main]
 
-# A new push to the same branch cancels the older, now useless run.
+# On a PR, a new push cancels the older, now useless run.
+# On main, every merge keeps its own run, so each commit gets a result.
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 # Least privilege: this workflow only needs to read the code.
 permissions:
@@ -44,7 +45,7 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-      - name: Check formatting
+      - name: Check formatting (src)
         run: pnpm format:check
 
       - name: Typecheck
