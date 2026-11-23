@@ -28,13 +28,15 @@ pnpm lint             # ESLint
 pnpm typecheck        # next typegen (route types) + tsc --noEmit
 pnpm test             # Vitest unit tests, run once
 pnpm test:watch       # Vitest in watch mode
+pnpm test:db          # database tests (*.db.test.ts), need pnpm db:start
 pnpm test:e2e         # Playwright e2e tests (set up in T-FND-5)
 pnpm build            # production build
 pnpm format           # Prettier on src/
 pnpm dlx shadcn@latest add <component>   # add a shadcn/ui component
-supabase start        # local Postgres + Studio in Docker (localhost:54323, from T-FND-3)
-supabase db reset     # rebuild the local database from all migrations + seed
-supabase migration new <name>   # create a new migration file
+pnpm db:start         # local Supabase in Docker (API :54321, DB :54322, Studio :54323)
+pnpm db:reset         # rebuild the local database from all migrations + seed
+pnpm db:status        # local URLs and keys
+pnpm exec supabase migration new <name>   # create a new migration file
 node scripts/board.mjs show T-FND-1   # read a ticket (needs SHOP_OS_BOARD_KEY)
 ```
 
@@ -46,9 +48,12 @@ src/components/ui/    shadcn/ui components (generated, RTL-safe)
 src/lib/              Plain TypeScript logic: repositories, pricing, patterns. Not in pages.
 src/lib/pricing.ts    The only place for money math (from SO-M4)
 src/**/*.test.ts      Vitest unit tests, next to the code they test
+src/**/*.db.test.ts   Tests against the local database (pnpm test:db)
 messages/ar.json      Arabic UI text (next-intl)
 messages/en.json      English UI text
-supabase/migrations/  Every database change, as SQL files (from T-FND-3)
+supabase/migrations/  Every database change, as SQL files. Never edit one that already ran on staging.
+supabase/seed.sql     Local sample data, loaded by db:reset (never staging or prod)
+supabase/config.toml  Local Supabase settings (ports, auth)
 docs/prd/             What to build, per milestone
 docs/adr/             Why we decided things
 scripts/board.mjs     Ticket board CLI
