@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 
 // Placeholder home page for T-FND-2. It proves Tailwind and shadcn/ui work.
 // The real landing page and the Arabic/English switch come in later tickets.
+// These strings move to messages/ar.json and messages/en.json with next-intl (T-ACC-1).
 export default function Home() {
   return (
     <main className="flex flex-1 flex-col items-center justify-center gap-6 p-8 text-center">

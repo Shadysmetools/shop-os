@@ -25,7 +25,7 @@ Use pnpm, never npm or yarn.
 pnpm install          # install dependencies
 pnpm dev              # run the app at http://localhost:3000
 pnpm lint             # ESLint
-pnpm typecheck        # TypeScript check (tsc --noEmit)
+pnpm typecheck        # next typegen (route types) + tsc --noEmit
 pnpm test             # Vitest unit tests, run once
 pnpm test:watch       # Vitest in watch mode
 pnpm test:e2e         # Playwright e2e tests (set up in T-FND-5)
