@@ -19,17 +19,20 @@ Reasons are in `docs/adr/0001-tech-stack.md`.
 
 ## Commands
 
-The app is scaffolded in T-FND-2. Until then, only the board command works.
+Use pnpm, never npm or yarn.
 
 ```bash
 pnpm install          # install dependencies
 pnpm dev              # run the app at http://localhost:3000
 pnpm lint             # ESLint
-pnpm typecheck        # TypeScript, no emit
-pnpm test             # Vitest unit tests
-pnpm e2e              # Playwright e2e tests
+pnpm typecheck        # next typegen (route types) + tsc --noEmit
+pnpm test             # Vitest unit tests, run once
+pnpm test:watch       # Vitest in watch mode
+pnpm test:e2e         # Playwright e2e tests (set up in T-FND-5)
 pnpm build            # production build
-supabase start        # local Postgres + Studio in Docker (localhost:54323)
+pnpm format           # Prettier on src/
+pnpm dlx shadcn@latest add <component>   # add a shadcn/ui component
+supabase start        # local Postgres + Studio in Docker (localhost:54323, from T-FND-3)
 supabase db reset     # rebuild the local database from all migrations + seed
 supabase migration new <name>   # create a new migration file
 node scripts/board.mjs show T-FND-1   # read a ticket (needs SHOP_OS_BOARD_KEY)
@@ -38,9 +41,11 @@ node scripts/board.mjs show T-FND-1   # read a ticket (needs SHOP_OS_BOARD_KEY)
 ## Folder map
 
 ```
-app/                  Next.js routes and pages (from T-FND-2)
-lib/                  Plain TypeScript logic: repositories, pricing, patterns
-lib/pricing.ts        The only place for money math (from SO-M4)
+src/app/              Next.js routes and pages (App Router). Keep them thin.
+src/components/ui/    shadcn/ui components (generated, RTL-safe)
+src/lib/              Plain TypeScript logic: repositories, pricing, patterns. Not in pages.
+src/lib/pricing.ts    The only place for money math (from SO-M4)
+src/**/*.test.ts      Vitest unit tests, next to the code they test
 messages/ar.json      Arabic UI text (next-intl)
 messages/en.json      English UI text
 supabase/migrations/  Every database change, as SQL files (from T-FND-3)
@@ -55,7 +60,7 @@ scripts/board.mjs     Ticket board CLI
 1. **Every business table has `shop_id uuid not null references shops(id)` and RLS enabled**, with policies that use `current_shop_id()`. Add the table to the cross-tenant test. See `docs/adr/0002-multi-tenancy-rls.md`.
 2. **Never commit secrets.** No API keys, Supabase keys, Telegram tokens or Paymob keys in code, commits, logs or screenshots. Secrets live in `.env.local` (git-ignored), Vercel settings and GitHub Actions secrets. `.env.example` has names only, no values.
 3. **No `service_role` key in browser code.** It skips RLS. Use it only in the reviewed server-side allow list (invite accept, Paymob webhook, Telegram webhook, cron jobs).
-4. **Money is an integer in piastres** (12.50 EGP = 1250). All money math lives in `lib/pricing.ts`. Never compute totals in two places.
+4. **Money is an integer in piastres** (12.50 EGP = 1250). All money math lives in `src/lib/pricing.ts`. Never compute totals in two places.
 5. **Stock is an insert-only ledger.** Never update or delete a stock movement. Fix a mistake with a new opposite movement. On hand = `SUM(qty)`.
 6. **Schema changes only through migrations** in `supabase/migrations/`. Never change the schema by clicking in the Supabase dashboard.
 7. **RTL-safe styling.** Use logical Tailwind classes (`ms-4`, `pe-2`, `text-start`), never `ml-`, `pr-`, `text-left`. Every UI string goes in both `messages/ar.json` and `messages/en.json`.
