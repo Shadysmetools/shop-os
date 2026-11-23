@@ -1,6 +1,5 @@
 # Runs on every pull request and every push to main.
 # Fails if README, CLAUDE.md or the two core ADRs are missing or incomplete.
-# The full CI pipeline (lint, typecheck, tests, build) comes in T-FND-4.
 name: Docs check
 
 on:
@@ -8,12 +7,17 @@ on:
   push:
     branches: [main]
 
+# Least privilege: this workflow only needs to read the code.
+permissions:
+  contents: read
+
 jobs:
   docs:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: lts/*
+          node-version-file: .nvmrc
       - run: node scripts/check-docs.mjs
